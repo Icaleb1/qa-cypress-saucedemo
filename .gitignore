@@ -1,3 +1,5 @@
 node_modules/
+reports/
+screenshots/
 ANOTACOES-CYPRESS.md
 EXERCICIOS-CYPRESS.md

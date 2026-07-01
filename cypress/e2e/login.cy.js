@@ -7,9 +7,18 @@ describe('Login', () => {
     it('Deve realizar login com sucesso e ser redirecionado para dentro do sistema', () => {
         cy.get('[data-test="username"]').type('standard_user')
         cy.get('[data-test="password"]').type('secret_sauce')
+
+        //teste do blackout
+        cy.screenshot('login preenchido', { 
+            blackout: ['[data-test="username"]'] 
+        });
+
         cy.get('[data-test="login-button"]').click()
 
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
+
+        cy.screenshot('página inicial')
+
     })
     it('Realizar login com credenciais invalidas', () => {
         cy.get('[data-test="username"]').type('invalido')
@@ -23,6 +32,8 @@ describe('Login', () => {
         )
 
         cy.url().should('eq', 'https://www.saucedemo.com/')
+
+        cy.screenshot('erro de credenciais inválidas')
     })
 
     it('Deve tentar realizar login sem Username e receber mensagem de erro', () => {
