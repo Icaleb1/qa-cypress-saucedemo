@@ -3,7 +3,7 @@ import { elements as el } from "./elements"
 class Header {
 
     validarQueCarrinhoPossuiItens(quantidade){
-        cy.screenshot('produto adicionado')
+        //cy.screenshot('produto adicionado')
 
         cy.get(el.cartBadge).should('be.visible').and('have.text', quantidade.toString())
     }
@@ -13,9 +13,13 @@ class Header {
     }
 
     validarQueCarrinhoNaoPossuiItens(){
-        cy.contains(el.cartBadge).should('not.exist') 
+        cy.get(el.cartBadge).should('not.exist') 
 
-        cy.screenshot('Produto removido ')
+        //cy.screenshot('Produto removido ')
+    }
+
+    abrirSideBar(){
+        cy.get(el.sidebarbtn).click()
     }
 
 }

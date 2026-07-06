@@ -1,6 +1,6 @@
 import Login from "../pages/login"
 import Inventory from "../pages/inventory"
-import Header from "../pages/header"
+import Header from "../components/header"
 import Cart from "../pages/cart"
 
 describe('Carrinho', () => {
@@ -16,7 +16,7 @@ describe('Carrinho', () => {
         const qtdItensAdicionados = 1
         Header.validarQueCarrinhoPossuiItens(qtdItensAdicionados)
 
-        Header.navegarParaCarrinho
+        Header.navegarParaCarrinho()
 
         Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack')
 
@@ -24,17 +24,18 @@ describe('Carrinho', () => {
     })
 
     it('Deve adicionar mais de um produto ao carrinho com sucesso', () => {
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
-        cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click()
+        Inventory.adicionarProduto('Sauce Labs Backpack')
+        Inventory.adicionarProduto('Sauce Labs Bike Light')
+        Inventory.adicionarProduto('Sauce Labs Bolt T-Shirt')
 
-        cy.get('.shopping_cart_badge').should('be.visible').and('have.text', '3')
+        const qtdItensAdicionados = 3
+        Header.validarQueCarrinhoPossuiItens(qtdItensAdicionados)
 
-        cy.get('#shopping_cart_container').click()
+        Header.navegarParaCarrinho()
 
-        cy.contains('Sauce Labs Backpack').should('be.visible') 
-        cy.contains('Sauce Labs Bike Light').should('be.visible') 
-        cy.contains('Sauce Labs Bolt T-Shirt').should('be.visible') 
+        Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack')
+        Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Bike Light')
+        Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Bolt T-Shirt')
 
     })
 

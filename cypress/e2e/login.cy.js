@@ -1,5 +1,5 @@
-import Login from "../pages/login/index"
-import Inventory  from "../pages/inventory/index"
+import Login from "../pages/login"
+import Inventory  from "../pages/inventory"
 
 
 describe('Login', () => {
@@ -24,23 +24,15 @@ describe('Login', () => {
     })
 
     it('Deve tentar realizar login sem Username e receber mensagem de erro', () => {
-        cy.get('[data-test="password"]').type('secret_sauce')
-        cy.get('[data-test="login-button"]').click()
+        Login.preencherCredenciaisOmitindoUsername()
 
-        cy.get('[data-test="error"]').should(
-            'contain.text',
-            'Username is required'
-        )
+        Login.validarErroUsernameObrigatorio()
     })
 
     it('Deve tentar realizar login sem password e receber mensagem de erro', () => {
-        cy.get('[data-test="username"]').type('standard_user')
-        cy.get('[data-test="login-button"]').click()
+        Login.preencherCredenciaisOmitindoPassword()
 
-        cy.get('[data-test="error"]').should(
-            'contain.text',
-            'Password is required'
-        )
+        Login.validarErroPasswordObrigatorio()
     })
 
 }) 

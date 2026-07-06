@@ -1,18 +1,22 @@
+import Login  from "../pages/login"
+import Inventory from "../pages/inventory"
+import Product from "../pages/product"
+
 describe('Produto', () => {
     beforeEach(() => {
-        cy.visit('/')
-        cy.login("standard_user","secret_sauce")
+        Login.visitarPagina()
+        Login.preencherCredenciaisValidas()
     })
 
 
     it('Deve acessar um produto e ver seus detalhes corretamente', () => {
         
-        cy.contains('Sauce Labs Backpack').click()
+        Inventory.acessarUmProduto('Sauce Labs Backpack')
 
-        cy.url().should('eq', 'https://www.saucedemo.com/inventory-item.html?id=4')
+        Product.validarAcessoAPagina()
 
-        cy.contains('Sauce Labs Backpack').should('be.visible')
+        Product.validarProdutoSelecionado('Sauce Labs Backpack')
         
-        cy.get('[data-test="inventory-item-desc"]')
+        Product.validarDetalhesDoProduto()
     })
 })
