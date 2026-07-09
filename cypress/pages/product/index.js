@@ -15,4 +15,4 @@ class Product {
 
 }
 
-export default new Product
+export default new Product  

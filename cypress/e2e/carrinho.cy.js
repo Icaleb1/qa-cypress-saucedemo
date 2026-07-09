@@ -18,6 +18,8 @@ describe('Carrinho', () => {
 
         Header.navegarParaCarrinho()
 
+        Cart.validarAcessoAPagina()
+
         Cart.validarProdutoPresenteNoCarrinho('Sauce Labs Backpack')
 
         
