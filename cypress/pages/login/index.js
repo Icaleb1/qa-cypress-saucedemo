@@ -7,8 +7,10 @@ class Login {
     }
 
     preencherCredenciaisValidas(){
-        cy.get(el.usernameInput).type('standard_user')
-        cy.get(el.passwordInput).type('secret_sauce')
+        cy.env(['username', 'password']).then(({ username, password }) => {
+            cy.get(el.usernameInput).type(username)
+            cy.get(el.passwordInput).type(password)
+        })
 
         // cy.screenshot('login preenchido', { 
         //     blackout: [el.usernameInput] 
