@@ -16,3 +16,14 @@ jobs:
           CYPRESS_BASE_URL: ${{ secrets.BASE_URL }}
           CYPRESS_username: ${{ secrets.QA_USERNAME }}
           CYPRESS_password: ${{ secrets.QA_PASSWORD }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: cypress-reports
+          path: cypress/reports
+          if-no-files-found: ignore 
+      - uses: actions/upload-artifact@v7
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore 
