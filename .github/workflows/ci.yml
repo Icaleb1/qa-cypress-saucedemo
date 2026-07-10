@@ -6,7 +6,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      # Install dependencies with caching
-      # and run all Cypress tests
+
       - name: Cypress run
         uses: cypress-io/github-action@v7
+        with:
+          config-file: config-dev.js
+          browser: chrome
+        env:
+          CYPRESS_BASE_URL: ${{ secrets.BASE_URL }}
+          CYPRESS_username: ${{ secrets.QA_USERNAME }}
+          CYPRESS_password: ${{ secrets.QA_PASSWORD }}
