@@ -2,7 +2,7 @@ import { elements as el } from "./elements"
 class Product {
 
     validarAcessoAPagina(){
-        cy.url().should('eq', 'https://www.saucedemo.com/inventory-item.html?id=')
+        cy.url().should('include', '/inventory-item.html?id=')
     }
 
     validarProdutoSelecionado(itemName){
