@@ -1,0 +1,22 @@
+stages:
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .npm/
+
+test:
+  image: cypress/browsers:22.15.0
+  stage: test
+  script:
+    # install dependencies
+    - npm ci
+    # run Cypress tests
+    - npm run cy:run:dev:chrome
+  artifacts:
+    when: always
+    paths:
+      - cypress/reports
+    expire_in: 1 day

@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run cy:run:chrome",
-    "cy:open:chrome": "npx cypress open --browser chrome",
-    "cy:run:chrome": "npx cypress run --browser chrome",
+
     "cy:clean:reports": "rm -rf cypress/reports/*",
-    "cypress:open:dev": "npx cypress open --config-file config-dev.js --browser chrome",
-    "cy:run:dev": "npx cypress run --config-file config-dev.js --browser chrome"
+    "cypress:open:dev:chrome": "npx cypress open --config-file config-dev.js --browser chrome",
+    "cy:run:dev:chrome": "npx cypress run --config-file config-dev.js --browser chrome"
   },
   "keywords": [],
   "author": "",
